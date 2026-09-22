@@ -1531,6 +1531,7 @@
 
   function startAksiPhase() {
     aksiOrder = state.players.slice().sort(function(a, b) { return a.order - b.order; });
+    aksiOrder.forEach(function(p) { p._qbDone = false; });
     state.turnPointer = 0;
     goTo('screen-aksi');
     renderAksiScreen();
@@ -1540,7 +1541,14 @@
 
   function advanceAksiTurn() {
     if (state.pool.length === 0) { finishAksiPhase(); return; }
-    state.turnPointer++;
+    if (aksiOrder.every(function(p) { return p._qbDone; })) {
+      aksiOrder.forEach(function(p) { p._qbDone = false; });
+    }
+    var guard = 0;
+    do {
+      state.turnPointer++;
+      guard++;
+    } while (aksiOrder[state.turnPointer % aksiOrder.length]._qbDone && guard <= aksiOrder.length * 2);
     renderAksiScreen();
   }
 
@@ -1994,9 +2002,10 @@
     var taken = 0;
     function draw() {
       if (taken >= need) {
+        p._qbDone = true;
         aksiActionPanel.innerHTML =
           '<p class="aksi-panel-title">Quickbuy selesai</p>' +
-          '<p class="aksi-panel-sub">' + escapeHtml(p.name) + ' menyimpan ' + taken + ' saham sekaligus lewat Quickbuy. Sesuai aturan, giliran otomatis berakhir setelah ini — tidak bisa mengambil kartu lagi ronde ini.</p>' +
+          '<p class="aksi-panel-sub">' + escapeHtml(p.name) + ' menyimpan ' + taken + ' saham sekaligus lewat Quickbuy. Sesuai aturan, giliran ' + escapeHtml(p.name) + ' selesai untuk ronde Fase Aksi ini — tidak akan kebagian giliran lagi sampai ronde berikutnya.</p>' +
           '<button class="btn-option" id="btn-quickbuy-done">Lanjut ke pemain berikutnya</button>';
         document.getElementById('btn-quickbuy-done').addEventListener('click', advanceAksiTurn);
         return;
