@@ -9,31 +9,34 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-void: #0A0F1C;
-    --panel: #131A2B;
-    --panel-raised: #1B2338;
-    --panel-line: #2A3352;
-    --ink: #EDEFF5;
-    --ink-muted: #7C86A3;
-    --ink-faint: #4C5570;
+    --bg-void: #FFF7F6;
+    --panel: #FFFFFF;
+    --panel-raised: #FFF1EE;
+    --panel-line: #EAD9D6;
+    --ink: #23130F;
+    --ink-muted: #7A6763;
+    --ink-faint: #B7A6A2;
 
-    --keuangan: #E3A23C;
-    --tambang: #D6484A;
-    --reksadana: #3FB6A8;
-    --agrikultur: #5FAE49;
-    --konsumer: #3E80C4;
+    --brand: #E63946;
+    --brand-dark: #C22233;
+
+    --keuangan: #E3902A;
+    --tambang: #D6303B;
+    --reksadana: #1F9E90;
+    --agrikultur: #4C9A3E;
+    --konsumer: #2E6FBE;
 
     --font-display: 'Space Grotesk', system-ui, sans-serif;
     --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
   }
 
-  :root:not([data-theme="light"]) { color-scheme: dark; }
-  :root[data-theme="light"] {
-    --bg-void: #0A0F1C;
-    --panel: #131A2B;
-  }
+  :root { color-scheme: light; }
 
   * { box-sizing: border-box; }
+
+  .reveal-box, .aksi-panel, .ladder, .name-field, .aksi-card, .final-row, .player-chip, .pass-card .reveal-box {
+    box-shadow: 0 2px 8px rgba(35,19,15,0.06);
+  }
 
   html, body {
     margin: 0;
@@ -47,8 +50,8 @@
 
   body {
     background-image:
-      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(63,182,168,0.08), transparent),
-      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(214,72,126,0.07), transparent);
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(230,57,70,0.06), transparent),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(31,158,144,0.06), transparent);
   }
 
   .screen {
@@ -76,7 +79,7 @@
     line-height: 1;
     margin: 0;
   }
-  .wordmark span { color: var(--reksadana); }
+  .wordmark span { color: var(--brand); }
 
   .tagline {
     color: var(--ink-muted);
@@ -119,9 +122,9 @@
   }
   .count-btn:hover { border-color: var(--ink-faint); color: var(--ink); }
   .count-btn.selected {
-    background: var(--reksadana);
-    border-color: var(--reksadana);
-    color: #061512;
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #FFFFFF;
   }
 
   .name-fields {
@@ -166,15 +169,15 @@
     font-family: var(--font-display);
     font-size: 1rem;
     font-weight: 600;
-    color: #061512;
-    background: var(--reksadana);
+    color: #FFFFFF;
+    background: var(--brand);
     border: none;
     border-radius: 4px;
     padding: 16px 28px;
     cursor: pointer;
     transition: transform 0.1s, background 0.15s;
   }
-  .btn-primary:hover { background: #52c9bb; }
+  .btn-primary:hover { background: var(--brand-dark); }
   .btn-primary:active { transform: scale(0.98); }
   .btn-primary:disabled {
     background: var(--panel-raised);
@@ -269,7 +272,7 @@
     font-family: var(--font-mono);
     font-weight: 600;
     font-size: 2.6rem;
-    color: var(--reksadana);
+    color: var(--brand);
     letter-spacing: -0.01em;
   }
   .capital-figure .unit {
@@ -444,7 +447,7 @@
   .order-badge {
     font-family: var(--font-mono);
     font-size: 0.75rem;
-    color: var(--reksadana);
+    color: var(--brand);
     border: 1px solid var(--panel-line);
     border-radius: 4px;
     padding: 2px 6px;
@@ -478,7 +481,7 @@
     outline: none;
     -moz-appearance: textfield;
   }
-  .bid-input:focus { border-color: var(--reksadana); }
+  .bid-input:focus { border-color: var(--brand); }
 
   .bid-hint {
     color: var(--ink-faint);
@@ -510,7 +513,7 @@
   .result-rank {
     font-family: var(--font-mono);
     font-weight: 700;
-    color: var(--reksadana);
+    color: var(--brand);
   }
 
   /* ---------- Fase Aksi ---------- */
@@ -553,7 +556,7 @@
     transition: border-color 0.15s, transform 0.1s;
   }
   .aksi-card:hover { border-color: var(--ink-faint); transform: translateY(-2px); }
-  .aksi-card.selected { border-color: var(--reksadana); background: var(--panel-raised); }
+  .aksi-card.selected { border-color: var(--brand); background: var(--panel-raised); }
   .aksi-card .aksi-sector { font-size: 0.72rem; font-weight: 600; margin-bottom: 8px; }
   .aksi-card .aksi-effect { font-size: 0.85rem; color: var(--ink-muted); }
   .aksi-card .aksi-effect.plain { color: var(--ink-faint); font-style: italic; }
@@ -562,7 +565,7 @@
   .aksi-card[data-theme="konsumer"] .aksi-sector { color: var(--konsumer); }
   .aksi-card[data-theme="keuangan"] .aksi-sector { color: var(--keuangan); }
   .aksi-card[data-theme="agrikultur"] .aksi-sector { color: var(--agrikultur); }
-  .aksi-card[data-theme="reksadana"] .aksi-sector { color: var(--reksadana); }
+  .aksi-card[data-theme="reksadana"] .aksi-sector { color: var(--brand); }
 
   .aksi-panel {
     background: var(--panel);
@@ -589,7 +592,7 @@
     cursor: pointer;
     transition: border-color 0.15s;
   }
-  .btn-option:hover { border-color: var(--reksadana); }
+  .btn-option:hover { border-color: var(--brand); }
   .btn-option:disabled { opacity: 0.4; cursor: not-allowed; }
 
   .holdings-section { margin-top: 40px; }
@@ -654,12 +657,12 @@
     padding: 18px 20px;
     margin-bottom: 10px;
   }
-  .final-row.winner { border-color: var(--reksadana); background: var(--panel-raised); }
+  .final-row.winner { border-color: var(--brand); background: var(--panel-raised); }
   .final-rank { font-family: var(--font-mono); font-size: 1.3rem; font-weight: 700; color: var(--ink-faint); width: 2ch; }
-  .final-row.winner .final-rank { color: var(--reksadana); }
+  .final-row.winner .final-rank { color: var(--brand); }
   .final-name { flex: 1; }
   .final-name .label { font-weight: 600; font-size: 1.05rem; }
-  .final-name .crown { color: var(--reksadana); font-size: 0.78rem; font-family: var(--font-mono); margin-top: 2px; }
+  .final-name .crown { color: var(--brand); font-size: 0.78rem; font-family: var(--font-mono); margin-top: 2px; }
   .final-breakdown { color: var(--ink-faint); font-size: 0.78rem; font-family: var(--font-mono); margin-top: 4px; }
   .final-total { font-family: var(--font-mono); font-weight: 700; font-size: 1.3rem; }
 
@@ -678,9 +681,9 @@
   }
   .coin-peek:hover { border-color: var(--ink-faint); }
   .coin-peek.revealed {
-    color: var(--reksadana);
+    color: var(--brand);
     border-style: solid;
-    border-color: var(--reksadana);
+    border-color: var(--brand);
   }
 
   /* ---------- Sentuhan tema saham: ticker, flash harga, animasi kartu ---------- */
@@ -744,7 +747,7 @@
   .wordmark-row { display: flex; align-items: center; gap: 14px; }
   .chart-squiggle polyline {
     fill: none;
-    stroke: var(--reksadana);
+    stroke: var(--brand);
     stroke-width: 2.5;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -761,9 +764,43 @@
     .chart-squiggle polyline { animation: none; stroke-dashoffset: 0; }
     .aksi-card, .sector.flash-up, .sector.flash-down { animation: none; }
   }
+
+  .toast-container {
+    position: fixed;
+    top: 46px;
+    right: 14px;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    pointer-events: none;
+    max-width: min(90vw, 300px);
+  }
+  .toast {
+    background: #FFFFFF;
+    border: 1px solid var(--panel-line);
+    border-left: 4px solid var(--brand);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--ink);
+    box-shadow: 0 8px 24px rgba(35,19,15,0.14);
+    animation: toastIn 0.25s ease, toastOut 0.3s ease 2.7s forwards;
+  }
+  .toast.up { border-left-color: var(--agrikultur); color: var(--agrikultur); }
+  .toast.down { border-left-color: var(--tambang); color: var(--tambang); }
+  @keyframes toastIn {
+    from { opacity: 0; transform: translateX(24px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes toastOut {
+    to { opacity: 0; transform: translateX(24px); }
+  }
 </style>
 </head>
 <body>
+<div class="toast-container" id="toast-container"></div>
 <div class="ticker-bar"><div class="ticker-track" id="ticker-track"></div></div>
 
 <!-- ============ SETUP SCREEN ============ -->
@@ -875,6 +912,16 @@
   </div>
 </section>
 
+<!-- ============ OPER PERANGKAT — sebelum tiap giliran input Bidding ============ -->
+<section id="screen-bid-pass" class="screen">
+  <div class="pass-card">
+    <p class="pass-eyebrow" id="bidpass-eyebrow">FASE BIDDING · GILIRAN 1 DARI 4</p>
+    <h2 class="pass-name" id="bidpass-name">Pemain 1</h2>
+    <p class="pass-instruction">Oper perangkat ke pemain ini. Pastikan pemain lain tidak melihat layar sebelum menekan tombol di bawah.</p>
+    <button class="btn-primary" id="btn-bidpass-continue" style="width:100%;">Mulai Giliran Saya</button>
+  </div>
+</section>
+
 <!-- ============ BIDDING: BUKA BERSAMAAN & HASIL ============ -->
 <section id="screen-bidreveal" class="screen">
   <div class="pass-card" style="max-width:560px;">
@@ -915,6 +962,16 @@
   </div>
 </section>
 
+<!-- ============ OPER PERANGKAT — sebelum tiap giliran Fase Aksi ============ -->
+<section id="screen-aksi-pass" class="screen">
+  <div class="pass-card">
+    <p class="pass-eyebrow" id="aksipass-eyebrow">FASE AKSI · GILIRAN 1 DARI 4</p>
+    <h2 class="pass-name" id="aksipass-name">Pemain 1</h2>
+    <p class="pass-instruction">Oper perangkat ke pemain ini. Pastikan pemain lain tidak melihat layar sebelum menekan tombol di bawah.</p>
+    <button class="btn-primary" id="btn-aksipass-continue" style="width:100%;">Mulai Giliran Saya</button>
+  </div>
+</section>
+
 <!-- ============ FASE JUAL (giliran, layar bersama) ============ -->
 <section id="screen-jual" class="screen">
   <div class="aksi-wrap">
@@ -936,6 +993,16 @@
     </div>
 
     <div class="aksi-panel" id="jual-panel"></div>
+  </div>
+</section>
+
+<!-- ============ OPER PERANGKAT — sebelum tiap giliran Fase Jual ============ -->
+<section id="screen-jual-pass" class="screen">
+  <div class="pass-card">
+    <p class="pass-eyebrow" id="jualpass-eyebrow">FASE JUAL · GILIRAN 1 DARI 4</p>
+    <h2 class="pass-name" id="jualpass-name">Pemain 1</h2>
+    <p class="pass-instruction">Oper perangkat ke pemain ini. Pastikan pemain lain tidak melihat layar sebelum menekan tombol di bawah.</p>
+    <button class="btn-primary" id="btn-jualpass-continue" style="width:100%;">Mulai Giliran Saya</button>
   </div>
 </section>
 
@@ -1036,6 +1103,12 @@
   var THEME_LABEL = {
     tambang: 'Saham Tambang', konsumer: 'Saham Konsumer', keuangan: 'Saham Keuangan',
     agrikultur: 'Saham Agrikultur', reksadana: 'Reksa Dana'
+  };
+  var THEME_ICON = {
+    tambang: '⛏️', konsumer: '💧', keuangan: '💰', agrikultur: '🌾', reksadana: '🔗'
+  };
+  var EFFECT_ICON = {
+    info: '🔎', rumor: '📈', quickbuy: '⏱️', fee: '🧮', akuisisi: '🛒'
   };
 
   // Dek Kartu Ekonomi: 18 jenis efek unik x2 = 36 kartu, generik (tidak bersektor saat dikocok)
@@ -1210,7 +1283,7 @@
 
       var nameEl = document.createElement('div');
       nameEl.className = 'sector-name';
-      nameEl.textContent = sec.name;
+      nameEl.textContent = (THEME_ICON[sec.id] || '') + ' ' + sec.name;
       col.appendChild(nameEl);
 
       var ladder = document.createElement('div');
@@ -1333,18 +1406,35 @@
     return div.innerHTML;
   }
 
-  function coinPeekHtml(coins) {
-    return 'Koin saat ini: <span class="coin-peek" data-coins="' + coins + '">🙈 Tekan untuk lihat</span>';
+  function peekChipHtml(value, unit) {
+    return '<span class="coin-peek" data-value="' + value + '" data-unit="' + unit + '">🙈 Tekan untuk lihat</span>';
   }
 
-  function wireCoinPeek(containerEl) {
+  function wirePeekChip(containerEl) {
     var span = containerEl.querySelector('.coin-peek');
     if (!span) return;
     span.addEventListener('click', function() {
-      if (span.classList.contains('revealed')) return;
-      span.classList.add('revealed');
-      span.textContent = '💰 ' + span.dataset.coins + ' koin';
+      var revealed = span.classList.toggle('revealed');
+      span.textContent = revealed ? ('💰 ' + span.dataset.value + ' ' + span.dataset.unit + ' — tekan untuk tutup') : '🙈 Tekan untuk lihat';
     });
+  }
+
+  function coinPeekHtml(coins) {
+    return 'Koin saat ini: ' + peekChipHtml(coins, 'koin');
+  }
+
+  function showToast(msg, kind) {
+    var container = document.getElementById('toast-container');
+    if (!container) return;
+    var el = document.createElement('div');
+    el.className = 'toast' + (kind ? ' ' + kind : '');
+    el.textContent = msg;
+    container.appendChild(el);
+    setTimeout(function() { if (el.parentNode) el.parentNode.removeChild(el); }, 3000);
+  }
+
+  function wireCoinPeek(containerEl) {
+    wirePeekChip(containerEl);
   }
 
   function goTo(id) {
@@ -1383,6 +1473,7 @@
     p.coins += 10;
     p.utang += 1;
     state.utangRemaining -= 1;
+    showToast('🏦 +10 Koin — Pinjaman Bank (' + escapeHtml(p.name) + ')', 'up');
     renderBoard();
   });
 
@@ -1404,13 +1495,24 @@
 
   function cardHtml(card) {
     return '<div class="aksi-card" data-theme="' + card.theme + '">' +
-      '<div class="aksi-sector">' + THEME_LABEL[card.theme] + '</div>' +
-      '<div class="aksi-effect">' + EFFECT_LABEL[card.effect] + '</div>' +
+      '<div class="aksi-sector">' + THEME_ICON[card.theme] + ' ' + THEME_LABEL[card.theme] + '</div>' +
+      '<div class="aksi-effect">' + EFFECT_ICON[card.effect] + ' ' + EFFECT_LABEL[card.effect] + '</div>' +
       '</div>';
   }
 
   btnGotoBidding.addEventListener('click', function() {
     state.passIndex = 0;
+    goToBidPass();
+  });
+
+  function goToBidPass() {
+    var p = state.players[state.passIndex];
+    document.getElementById('bidpass-eyebrow').textContent = 'FASE BIDDING · GILIRAN ' + (state.passIndex + 1) + ' DARI ' + state.players.length;
+    document.getElementById('bidpass-name').textContent = p.name;
+    goTo('screen-bid-pass');
+  }
+
+  document.getElementById('btn-bidpass-continue').addEventListener('click', function() {
     goTo('screen-bidenter');
     renderBidEntry();
   });
@@ -1451,6 +1553,7 @@
         p.coins += 10;
         p.utang += 1;
         state.utangRemaining -= 1;
+        showToast('🏦 +10 Koin — Pinjaman Bank', 'up');
         renderBidEntry();
       });
     }
@@ -1471,13 +1574,14 @@
       bidBox.innerHTML =
         '<div class="reveal-box reveal-shown" style="cursor:default;">' +
         '<span class="reveal-label">Tawaran terkunci</span>' +
-        '<span class="capital-figure">' + v + '<span class="unit">koin</span></span>' +
+        peekChipHtml(v, 'koin') +
         '</div>';
+      wirePeekChip(bidBox);
       bidActionBtn.textContent = 'Oper ke pemain berikutnya';
     } else {
       state.passIndex++;
       if (state.passIndex < state.players.length) {
-        renderBidEntry();
+        goToBidPass();
       } else {
         goTo('screen-bidreveal');
       }
@@ -1533,9 +1637,21 @@
     aksiOrder = state.players.slice().sort(function(a, b) { return a.order - b.order; });
     aksiOrder.forEach(function(p) { p._qbDone = false; });
     state.turnPointer = 0;
+    goToAksiPass();
+  }
+
+  function goToAksiPass() {
+    if (state.pool.length === 0) { finishAksiPhase(); return; }
+    var p = currentAksiPlayer();
+    document.getElementById('aksipass-eyebrow').textContent = 'FASE AKSI · GILIRAN ' + ((state.turnPointer % aksiOrder.length) + 1) + ' DARI ' + aksiOrder.length;
+    document.getElementById('aksipass-name').textContent = p.name;
+    goTo('screen-aksi-pass');
+  }
+
+  document.getElementById('btn-aksipass-continue').addEventListener('click', function() {
     goTo('screen-aksi');
     renderAksiScreen();
-  }
+  });
 
   function currentAksiPlayer() { return aksiOrder[state.turnPointer % aksiOrder.length]; }
 
@@ -1549,7 +1665,7 @@
       state.turnPointer++;
       guard++;
     } while (aksiOrder[state.turnPointer % aksiOrder.length]._qbDone && guard <= aksiOrder.length * 2);
-    renderAksiScreen();
+    goToAksiPass();
   }
 
   function finishAksiPhase() {
@@ -1564,9 +1680,21 @@
 
   function startJualPhase() {
     jualIndex = 0;
+    goToJualPass();
+  }
+
+  function goToJualPass() {
+    if (jualIndex >= aksiOrder.length) { finishJualPhase(); return; }
+    var p = aksiOrder[jualIndex];
+    document.getElementById('jualpass-eyebrow').textContent = 'FASE JUAL · GILIRAN ' + (jualIndex + 1) + ' DARI ' + aksiOrder.length;
+    document.getElementById('jualpass-name').textContent = p.name;
+    goTo('screen-jual-pass');
+  }
+
+  document.getElementById('btn-jualpass-continue').addEventListener('click', function() {
     goTo('screen-jual');
     renderJualScreen();
-  }
+  });
 
   function renderJualScreen() {
     if (jualIndex >= aksiOrder.length) { finishJualPhase(); return; }
@@ -1587,7 +1715,7 @@
       jualPanel.innerHTML =
         '<p class="aksi-panel-sub">' + escapeHtml(p.name) + ' tidak punya saham/Reksa Dana untuk dijual.</p>' +
         '<button class="btn-option" id="btn-jual-next">Lanjut ke pemain berikutnya</button>';
-      document.getElementById('btn-jual-next').addEventListener('click', function() { jualIndex++; renderJualScreen(); });
+      document.getElementById('btn-jual-next').addEventListener('click', function() { jualIndex++; goToJualPass(); });
       return;
     }
 
@@ -1602,7 +1730,7 @@
       '<div class="aksi-choice-row">' + opts + '</div>' +
       '<button class="btn-ghost" id="btn-jual-skip" style="margin-top:16px;">Tidak menjual apa pun</button>';
 
-    document.getElementById('btn-jual-skip').addEventListener('click', function() { jualIndex++; renderJualScreen(); });
+    document.getElementById('btn-jual-skip').addEventListener('click', function() { jualIndex++; goToJualPass(); });
     Array.prototype.forEach.call(jualPanel.querySelectorAll('[data-jual]'), function(btn) {
       btn.addEventListener('click', function() { renderJualQty(p, btn.dataset.jual); });
     });
@@ -1625,9 +1753,11 @@
       if (isNaN(qty) || qty < 0) qty = 0;
       if (qty > max) qty = max;
       p.holdings[sectorId] -= qty;
-      p.coins += qty * price;
+      var gain = qty * price;
+      p.coins += gain;
+      if (qty > 0) showToast('+' + gain + ' Koin — Jual ' + qty + ' ' + THEME_LABEL[sectorId], 'up');
       jualIndex++;
-      renderJualScreen();
+      goToJualPass();
     });
   }
 
@@ -1658,12 +1788,14 @@
     state.players.forEach(function(p) { p.holdings[sector.id] = 0; });
     sector.price = 5;
     log.push('<strong>' + sector.name + ': STOCK CRASH</strong> — semua saham sektor ini kembali ke Bank tanpa kompensasi, harga direset ke 5.');
+    showToast('💥 STOCK CRASH — ' + sector.name, 'down');
   }
 
   function splitSector(sector, log) {
     state.players.forEach(function(p) { if (p.holdings[sector.id] > 0) p.holdings[sector.id] *= 2; });
     sector.price = 5;
     log.push('<strong>' + sector.name + ': STOCK SPLIT</strong> — saham yang dimiliki tiap pemain di sektor ini berlipat ganda, harga direset ke 5.');
+    showToast('🚀 STOCK SPLIT — ' + sector.name, 'up');
   }
 
   function realSectorsInOrder() { return state.board.filter(function(s) { return !s.formula; }); }
@@ -1715,15 +1847,18 @@
         if (c.side === 'dividen') {
           state.players.forEach(function(p) { p.coins += (p.holdings[s.id] || 0); });
           log.push('<strong>' + s.name + ': Dividen</strong> — semua pemain dapat 1 koin per lembar saham sektor ini.');
+          showToast('💰 Dividen — ' + s.name + ' (semua pemegang saham dapat koin)', 'up');
         } else if (c.side === 'extrafee') {
           state.players.forEach(function(p) { p.coins = Math.max(0, p.coins - (p.holdings[s.id] || 0)); });
           log.push('<strong>' + s.name + ': Extra Fee</strong> — semua pemain bayar 1 koin per lembar saham sektor ini.');
+          showToast('💸 Extra Fee — ' + s.name + ' (semua pemegang saham bayar koin)', 'down');
         } else if (c.side === 'penerbitan') {
           state.players.forEach(function(p) { if ((p.holdings[s.id] || 0) > 0) p.holdings[s.id] += 1; });
           log.push('<strong>' + s.name + ': Penerbitan Saham Baru</strong> — turun 1 poin, semua pemegang saham dapat 1 lembar tambahan gratis.');
         } else if (c.side === 'pajak') {
           state.players.forEach(function(p) { p.coins = Math.max(0, p.coins - (p.order || 0)); });
           log.push('<strong>' + s.name + ': Pajak Jalan</strong> — semua pemain bayar koin ke Bank sesuai nomor Kartu Urutan mereka.');
+          showToast('💸 Pajak Jalan — semua pemain bayar sesuai Kartu Urutan', 'down');
         } else if (c.side === 'taxamnesty') {
           log.push('<strong>' + s.name + ': Tax Amnesty</strong> — naik 1 poin, kenaikan sektor lain ronde ini dapat bonus +1 poin.');
         } else if (c.side === 'buyback') {
@@ -1733,6 +1868,7 @@
           });
           s.price = 5;
           log.push('<strong>' + s.name + ': Buyback</strong> — naik 1 poin, semua pemegang wajib jual sekarang, harga direset ke 5.');
+          showToast('🛒 Buyback — ' + s.name + ' (semua pemegang wajib jual)', 'up');
         } else {
           log.push('<strong>' + s.name + ': ' + c.label + '</strong> — ' + c.desc);
         }
@@ -1783,7 +1919,7 @@
     var grid = document.getElementById('ekonomi-cards-grid');
     grid.innerHTML = state.lastEkonomiDrawn.map(function(d) {
       return '<div class="aksi-card" data-theme="' + d.sector.id + '">' +
-        '<div class="aksi-sector">' + d.sector.name + '</div>' +
+        '<div class="aksi-sector">' + (THEME_ICON[d.sector.id] || '') + ' ' + d.sector.name + '</div>' +
         '<div class="aksi-effect' + (d.card ? '' : ' plain') + '">' + (d.card ? d.card.label : '(dek habis)') + '</div>' +
         '</div>';
     }).join('');
@@ -1947,6 +2083,7 @@
     function reveal() {
       p.coins += 2;
       refreshAksiHeader(p);
+      showToast('🔎 +2 Koin — Info Bursa', 'up');
       var html = chosen.map(function(sid) {
         var s = findSector(sid);
         var top = s.ekonomi[0];
@@ -2041,30 +2178,53 @@
     var payable = Math.min(cost, p.coins);
     p.coins -= payable;
     refreshAksiHeader(p);
-    var ownedTypes = Object.keys(p.holdings).filter(function(k) { return p.holdings[k] > 0; });
-    var optionsHtml = ownedTypes.map(function(k) {
-      var price = sectorPrice(state.board, k);
-      return '<button class="btn-option" data-sell="' + k + '">Jual semua ' + THEME_LABEL[k] + ' (' + p.holdings[k] + ' × ' + price + ' koin)</button>';
-    }).join('');
-    aksiActionPanel.innerHTML =
-      '<p class="aksi-panel-title">Trading Fee</p>' +
-      '<p class="aksi-panel-sub">' + escapeHtml(p.name) + ' membayar ' + payable + ' koin ke Bank (1 koin × ' + cost + ' saham ' + THEME_LABEL[card.theme] + ', termasuk kartu ini).</p>' +
-      (ownedTypes.length ? '<div class="aksi-choice-row">' + optionsHtml + '</div>' :
-        '<p class="aksi-panel-sub">Tidak ada saham untuk dijual saat ini.</p><button class="btn-option" id="btn-fee-skip">Lanjut</button>');
-    if (ownedTypes.length) {
+    showToast('-' + payable + ' Koin — Trading Fee (' + THEME_LABEL[card.theme] + ')', 'down');
+
+    function showPanel() {
+      var ownedTypes = Object.keys(p.holdings).filter(function(k) { return p.holdings[k] > 0; });
+      var optionsHtml = ownedTypes.map(function(k) {
+        var price = sectorPrice(state.board, k);
+        return '<button class="btn-option" data-sell="' + k + '">' + THEME_LABEL[k] + ' — punya ' + p.holdings[k] + ' × ' + price + ' koin</button>';
+      }).join('');
+      aksiActionPanel.innerHTML =
+        '<p class="aksi-panel-title">Trading Fee</p>' +
+        '<p class="aksi-panel-sub">' + escapeHtml(p.name) + ' sudah membayar ' + payable + ' koin ke Bank (1 koin × ' + cost + ' saham ' + THEME_LABEL[card.theme] + ', termasuk kartu ini). Sekarang boleh jual saham — sebagian atau semua, boleh lebih dari satu jenis.</p>' +
+        (ownedTypes.length ? '<div class="aksi-choice-row">' + optionsHtml + '</div>' : '<p class="aksi-panel-sub">Tidak ada saham untuk dijual saat ini.</p>') +
+        '<button class="btn-ghost" id="btn-fee-done" style="margin-top:16px;">Selesai, lanjut giliran berikutnya</button>';
+      document.getElementById('btn-fee-done').addEventListener('click', advanceAksiTurn);
       Array.prototype.forEach.call(aksiActionPanel.querySelectorAll('[data-sell]'), function(btn) {
-        btn.addEventListener('click', function() {
-          var k = btn.dataset.sell;
-          var price = sectorPrice(state.board, k);
-          p.coins += p.holdings[k] * price;
-          p.holdings[k] = 0;
-          renderHoldingsTable();
-          advanceAksiTurn();
-        });
+        btn.addEventListener('click', function() { showQtyPicker(btn.dataset.sell); });
       });
-    } else {
-      document.getElementById('btn-fee-skip').addEventListener('click', advanceAksiTurn);
     }
+
+    function showQtyPicker(sectorId) {
+      var price = sectorPrice(state.board, sectorId);
+      var max = p.holdings[sectorId];
+      aksiActionPanel.innerHTML =
+        '<p class="aksi-panel-title">Jual ' + THEME_LABEL[sectorId] + '</p>' +
+        '<p class="aksi-panel-sub">Harga saat ini ' + price + ' koin/lembar. Anda punya ' + max + ' lembar — boleh jual sebagian.</p>' +
+        '<input type="number" id="fee-qty" class="bid-input" min="0" max="' + max + '" value="' + max + '">' +
+        '<div class="aksi-choice-row" style="margin-top:16px;">' +
+        '<button class="btn-option" id="btn-fee-sell-confirm">Jual</button>' +
+        '<button class="btn-ghost" id="btn-fee-sell-back">Batal</button>' +
+        '</div>';
+      document.getElementById('btn-fee-sell-back').addEventListener('click', showPanel);
+      document.getElementById('btn-fee-sell-confirm').addEventListener('click', function() {
+        var qty = parseInt(document.getElementById('fee-qty').value, 10);
+        if (isNaN(qty) || qty < 0) qty = 0;
+        if (qty > max) qty = max;
+        p.holdings[sectorId] -= qty;
+        var gain = qty * price;
+        p.coins += gain;
+        refreshAksiHeader(p);
+        renderHoldingsTable();
+        renderHoldingsInto(document.getElementById('aksi-holdings-table'));
+        if (qty > 0) showToast('+' + gain + ' Koin — Jual ' + qty + ' ' + THEME_LABEL[sectorId], 'up');
+        showPanel();
+      });
+    }
+
+    showPanel();
   }
 
   function runAkuisisi(p) {
@@ -2104,6 +2264,8 @@
         renderHoldingsTable();
         renderHoldingsInto(document.getElementById('aksi-holdings-table'));
         refreshAksiHeader(p);
+        showToast('🛍️ Akuisisi — ' + escapeHtml(p.name) + ' ambil ' + THEME_LABEL[v.sector] + ' dari ' + escapeHtml(v.target.name), 'down');
+        showToast('+' + kompensasi + ' Koin — kompensasi Akuisisi (' + escapeHtml(v.target.name) + ')', 'up');
         aksiActionPanel.innerHTML =
           '<p class="aksi-panel-title">Akuisisi berhasil</p>' +
           '<p class="aksi-panel-sub">' + escapeHtml(p.name) + ' mengambil 1 ' + THEME_LABEL[v.sector] + ' dari ' + escapeHtml(v.target.name) + '. ' +
