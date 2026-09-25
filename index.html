@@ -207,6 +207,103 @@
     max-width: 48ch;
   }
 
+  .info-toggle-wrap { margin-top: 28px; }
+
+  .info-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    color: var(--brand);
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 6px 0;
+  }
+  .info-toggle .chevron { transition: transform 0.2s ease; display: inline-block; }
+  .info-toggle[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+
+  .info-panel {
+    margin-top: 16px;
+    padding: 20px;
+    background: var(--panel);
+    border: 1px solid var(--panel-line);
+    border-radius: 10px;
+    max-width: 640px;
+    animation: infoFadeIn 0.25s ease;
+  }
+  @keyframes infoFadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .info-intro {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    margin: 0 0 20px;
+  }
+
+  .info-subhead {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    margin: 0 0 10px;
+  }
+
+  .info-endnote {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    line-height: 1.6;
+    margin: 12px 0 20px;
+  }
+
+  .flow-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  @media (max-width: 560px) {
+    .flow-strip { grid-template-columns: 1fr; }
+  }
+
+  .flow-step {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--panel-raised);
+    border: 1px solid var(--panel-line);
+    border-radius: 8px;
+    padding: 12px;
+  }
+  .flow-icon { font-size: 1.3rem; }
+  .flow-name { font-weight: 700; font-size: 0.9rem; }
+  .flow-desc { font-size: 0.76rem; color: var(--ink-muted); line-height: 1.4; }
+
+  .example-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+
+  .example-card {
+    flex: 1;
+    min-width: 220px;
+    background: var(--panel-raised);
+    border: 1px solid var(--panel-line);
+    border-radius: 8px;
+    padding: 14px;
+  }
+  .example-card .aksi-sector { font-size: 0.78rem; font-weight: 600; margin-bottom: 4px; }
+  .example-card .aksi-effect { font-size: 0.85rem; color: var(--ink-muted); margin-bottom: 10px; }
+  .example-card[data-theme="tambang"] .aksi-sector { color: var(--tambang); }
+  .example-card[data-theme="agrikultur"] .aksi-sector { color: var(--agrikultur); }
+  .example-card[data-theme="konsumer"] .aksi-sector { color: var(--konsumer); }
+  .example-outcomes { font-size: 0.8rem; line-height: 1.7; color: var(--ink); }
+
   /* ---------- Pass-device / privacy screen ---------- */
 
   #screen-pass {
@@ -831,6 +928,83 @@
     </div>
 
     <p class="setup-note">Setiap pemain akan mendapat giliran melihat modal awal secara rahasia sebelum papan bursa dibuka. Siapkan layar pembatas fisik jika ingin menyembunyikan layar dari pemain lain saat gantian.</p>
+
+    <div class="info-toggle-wrap">
+      <button class="info-toggle" id="btn-info-toggle" aria-expanded="false">
+        <span>Apa itu StockLab?</span>
+        <span class="chevron" id="info-chevron">▾</span>
+      </button>
+      <div class="info-panel" id="info-panel" hidden>
+
+        <p class="info-intro">StockLab adalah simulasi lantai bursa. Tiap pemain membangun aset lewat investasi di beberapa sektor saham &amp; Reksa Dana. Pemenangnya adalah pemain dengan <strong>koin + nilai saham terbanyak</strong> di akhir permainan — bergelar <strong>Investor Terbaik</strong>.</p>
+
+        <p class="info-subhead">Alur satu ronde</p>
+        <div class="flow-strip">
+          <div class="flow-step">
+            <span class="flow-icon">🎲</span>
+            <span class="flow-name">Bidding</span>
+            <span class="flow-desc">Tawar koin rahasia, tertinggi dapat urutan main duluan</span>
+          </div>
+          <div class="flow-step">
+            <span class="flow-icon">🃏</span>
+            <span class="flow-name">Aksi</span>
+            <span class="flow-desc">Ambil kartu terbuka: Simpan jadi saham, atau Aktifkan efeknya</span>
+          </div>
+          <div class="flow-step">
+            <span class="flow-icon">💵</span>
+            <span class="flow-name">Jual</span>
+            <span class="flow-desc">Jual saham yang dimiliki ke Bank sesuai harga saat itu</span>
+          </div>
+          <div class="flow-step">
+            <span class="flow-icon">📉</span>
+            <span class="flow-name">Ekonomi</span>
+            <span class="flow-desc">Harga tiap sektor bergerak otomatis, lalu ulang dari Bidding</span>
+          </div>
+        </div>
+        <p class="info-endnote">Permainan berakhir saat Kartu Ekonomi terakhir dibuka.</p>
+
+        <p class="info-subhead">Kartu Aksi — Simpan atau Aktifkan</p>
+        <p class="info-endnote" style="margin-top:0;">Kartu Aksi apa pun, kalau dipilih <strong>Simpan</strong>, selalu jadi 1 lembar saham sesuai sektor yang tertera — efek khususnya hilang. Kalau <strong>Aktifkan</strong>, efeknya jalan sesuai jenisnya (lihat 5 jenis di bawah), tapi kartunya tidak jadi saham.</p>
+        <div class="example-row">
+          <div class="example-card">
+            <div class="aksi-effect">🔎 Info Bursa</div>
+            <div class="example-outcomes"><div>Intip Kartu Ekonomi teratas dari 2 sektor pilihan, dapat 2 koin dari Bank.</div></div>
+          </div>
+          <div class="example-card">
+            <div class="aksi-effect">📈 Rumor</div>
+            <div class="example-outcomes"><div>Gerakkan harga sektor mana saja, naik atau turun, sampai 2 kali.</div></div>
+          </div>
+          <div class="example-card">
+            <div class="aksi-effect">⏱️ Quickbuy</div>
+            <div class="example-outcomes"><div>Langsung ambil &amp; simpan 2 kartu saham sekaligus — giliran otomatis berakhir.</div></div>
+          </div>
+          <div class="example-card">
+            <div class="aksi-effect">🧮 Trading Fee</div>
+            <div class="example-outcomes"><div>Bayar sedikit biaya ke Bank, lalu boleh jual sebagian/semua saham yang dimiliki.</div></div>
+          </div>
+          <div class="example-card">
+            <div class="aksi-effect">🛒 Akuisisi</div>
+            <div class="example-outcomes"><div>Ambil 1 saham dari pemain lain (jumlah sahamnya ≤ milik Anda); dia dapat kompensasi koin.</div></div>
+          </div>
+        </div>
+
+        <p class="info-subhead">Contoh Kartu Ekonomi</p>
+        <div class="example-row">
+          <div class="example-card" data-theme="agrikultur">
+            <div class="aksi-sector">🌾 Saham Agrikultur</div>
+            <div class="aksi-effect">Melaju</div>
+            <div class="example-outcomes"><div>Harga sektor ini <strong>naik 2 poin</strong> — otomatis, tanpa dipilih pemain.</div></div>
+          </div>
+          <div class="example-card" data-theme="konsumer">
+            <div class="aksi-sector">💧 Saham Konsumer</div>
+            <div class="aksi-effect">Anjlok</div>
+            <div class="example-outcomes"><div>Harga sektor ini <strong>turun 1 poin</strong> — otomatis, tanpa dipilih pemain.</div></div>
+          </div>
+        </div>
+        <p class="info-endnote">Setiap ronde, 1 Kartu Ekonomi otomatis terbuka untuk tiap sektor. Penjelasan tiap efek selalu muncul di layar saat kartunya benar-benar dibuka.</p>
+
+      </div>
+    </div>
   </div>
 </section>
 
@@ -2275,6 +2449,14 @@
       });
     });
   }
+
+  var btnInfoToggle = document.getElementById('btn-info-toggle');
+  var infoPanel = document.getElementById('info-panel');
+  btnInfoToggle.addEventListener('click', function() {
+    var expanded = btnInfoToggle.getAttribute('aria-expanded') === 'true';
+    btnInfoToggle.setAttribute('aria-expanded', String(!expanded));
+    infoPanel.hidden = expanded;
+  });
 
   buildNameFields();
   updateTicker();
